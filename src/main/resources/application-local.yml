@@ -1,0 +1,10 @@
+#DEFINE ENV VAR MAGIAVVENTURE_LIB_COMMON_JWT_SECRET
+
+logging:
+  level:
+    it.magiavventure: debug
+
+server:
+  error:
+    include-message: always
+    include-binding-errors: always

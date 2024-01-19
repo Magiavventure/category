@@ -1,0 +1,19 @@
+magiavventure:
+  lib:
+    common:
+      errors:
+        service-errors-messages:
+          category-not-found:
+            code: category-not-found
+            message: |-
+              La categoria con id %s non è stata trovata
+            status: 404
+          category-exists:
+            code: category-exists
+            message: |-
+              Impossibile procedere con il salvataggio, esiste già una categoria con nome: %s
+            status: 403
+    jwt:
+      endpoints:
+        - path: /v1/categories**
+          authenticated: true
