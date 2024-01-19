@@ -1,7 +1,7 @@
 # Magiavventure - Category
-[![codecov](https://codecov.io/gh/Magiavventure/app-magiavventure-category/graph/badge.svg?token=ZT248ZN1S1)](https://codecov.io/gh/Magiavventure/app-magiavventure-category)
-![Docker Image Version (latest semver)](https://img.shields.io/docker/v/magiavventure/app-magiavventure-category)
-![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/Magiavventure/app-magiavventure-category/build.yml)
+[![codecov](https://codecov.io/gh/Magiavventure/category/graph/badge.svg?token=VI7YRGTGXZ)](https://codecov.io/gh/Magiavventure/category)
+![Docker Image Version (latest semver)](https://img.shields.io/docker/v/magiavventure/category)
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/Magiavventure/category/build.yml)
 
 This service allows to create/update and find the categories used by Magiavventure App.
 
