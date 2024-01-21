@@ -1,7 +1,7 @@
 package it.magiavventure.category.mapper;
 
-import it.magiavventure.category.entity.ECategory;
 import it.magiavventure.category.model.Category;
+import it.magiavventure.mongo.entity.ECategory;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingConstants;
 import org.mapstruct.ReportingPolicy;

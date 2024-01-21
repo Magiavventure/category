@@ -1,7 +1,7 @@
 package it.magiavventure.category.mapper;
 
-import it.magiavventure.category.entity.ECategory;
 import it.magiavventure.category.model.Category;
+import it.magiavventure.mongo.entity.ECategory;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

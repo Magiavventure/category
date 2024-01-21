@@ -1,6 +1,6 @@
 package it.magiavventure.category.repository;
 
-import it.magiavventure.category.entity.ECategory;
+import it.magiavventure.mongo.entity.ECategory;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 

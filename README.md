@@ -8,31 +8,28 @@ This service allows to create/update and find the categories used by Magiavventu
 ## Configuration
 The properties exposed to configure this project are:
 ```properties
-spring.data.mongodb.uri="string"                                                     # Uri for mongo connection
-spring.data.mongodb.uuid-representation="string"                                     # Format representation for uuid - use default
-spring.data.mongodb.auto-index-creation=boolean                                      # Create index automatically
-logging.level.app.magiavventure="string"                                             # Logging level package magiavventure
-magiavventure.lib.common.errors.errors-messages.{error-key}.code="string"            # The exception key error code
-magiavventure.lib.common.errors.errors-messages.{error-key}.message="string"         # The exception key error message
-magiavventure.lib.common.errors.errors-messages.{error-key}.description="string"     # The exception key error description
-magiavventure.lib.common.errors.errors-messages.{error-key}.status=integer           # The exception key error status
+logging.level.it.magiavventure="string"                                                      # Logging level package magiavventure
+magiavventure.lib.common.errors.service-errors-messages.{error-key}.code="string"            # The exception key error code
+magiavventure.lib.common.errors.service-errors-messages.{error-key}.message="string"         # The exception key error message
+magiavventure.lib.common.errors.service-errors-messages.{error-key}.description="string"     # The exception key error description
+magiavventure.lib.common.errors.service-errors-messages.{error-key}.status=integer           # The exception key error status
 ```
 
 ## Error message map
 The error message map is a basic system for return the specific message in the error response, 
-the configuration path at the moment is only for one branch **error-messages**.
-This branch setting a specific error message to **app.magiavventure.category.error.CategoryException**
+the configuration path is for branch **service-error-messages**.
+This branch setting a specific error message to **it.magiavventure.category.error.CategoryException**
 
 
 ## API
 ### Create Category
 This request allow to create a new category
 
-`POST /v1/categories`
+`POST /v1/saveCategory`
 
 ```bash
 curl -X 'POST' \
-  '<hostname>:<port>/v1/categories' \
+  '<hostname>:<port>/v1/saveCategory' \
   -H 'accept: */*' \
   -H 'Content-Type: application/json' \
   -d '{
@@ -68,11 +65,11 @@ category-exists     #(403 - in case there is already a category with the same na
 ### Update Category
 This request allow to update a category
 
-`PUT /v1/categories`
+`PUT /v1/updateCategory`
 
 ```bash
 curl -X 'PUT' \
-  '<hostname>:<port>/v1/categories' \
+  '<hostname>:<port>/v1/updateCategory' \
   -H 'accept: */*' \
   -H 'Content-Type: application/json' \
   -d '{
@@ -111,11 +108,11 @@ category-not-found  #(404 - in case a category not found with the id in body req
 ### Find All Categories
 This request allow to find all categories
 
-`GET /v1/categories`
+`GET /v1/retrieveCategories`
 
 ```bash
 curl -X 'GET' \
-  '<hostname>:<port>/v1/categories' \
+  '<hostname>:<port>/v1/retrieveCategories' \
   -H 'accept: */*' \
   -H 'Content-Type: application/json'
 ```
@@ -141,11 +138,11 @@ transfer-encoding: chunked
 ### Find Category by ID
 This request allow to find a category by ID
 
-`PUT /v1/categories/{id}`
+`PUT /v1/retrieveCategory/{id}`
 
 ```bash
 curl -X 'GET' \
-  '<hostname>:<port>/v1/categories/{id}' \
+  '<hostname>:<port>/v1/retrieveCategory/{id}' \
   -H 'accept: */*' \
   -H 'Content-Type: application/json'
 ```
@@ -177,11 +174,11 @@ category-not-found  #(404 - in case a category not found)
 ### Delete Category by ID
 This request allow to delete a category by ID
 
-`DELETE /v1/categories/{id}`
+`DELETE /v1/deleteCategory/{id}`
 
 ```bash
 curl -X 'DELETE' \
-  '<hostname>:<port>/v1/categories/{id}' \
+  '<hostname>:<port>/v1/deleteCategory/{id}' \
   -H 'accept: */*' \
   -H 'Content-Type: application/json'
 ```

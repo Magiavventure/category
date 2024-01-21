@@ -61,18 +61,16 @@ repositories {
 			password = project.findProperty("token") ?: System.getenv("TOKEN")
 		}
 	}
+	mavenLocal()
 }
 
 ext {
-	commonVersion = '1.1.5'
-	jwtVersion = '1.1.7'
+	starterVersion = '1.1.1'
 	mapstructVersion = '1.5.5.Final'
 }
 
 dependencies {
-	implementation "it.magiavventure:common:$commonVersion"
-	implementation "it.magiavventure:jwt:$jwtVersion"
-	implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
+	implementation "it.magiavventure:starter:$starterVersion"
 
 	implementation "org.mapstruct:mapstruct:$mapstructVersion"
 
