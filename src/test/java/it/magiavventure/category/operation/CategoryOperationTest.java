@@ -1,6 +1,5 @@
 package it.magiavventure.category.operation;
 
-import it.magiavventure.category.entity.ECategory;
 import it.magiavventure.category.mapper.CategoryMapper;
 import it.magiavventure.category.model.Category;
 import it.magiavventure.category.model.CreateCategory;
@@ -8,6 +7,7 @@ import it.magiavventure.category.model.UpdateCategory;
 import it.magiavventure.category.repository.CategoryRepository;
 import it.magiavventure.category.service.CategoryService;
 import it.magiavventure.common.error.MagiavventureException;
+import it.magiavventure.mongo.entity.ECategory;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

@@ -15,5 +15,18 @@ magiavventure:
             status: 403
     jwt:
       endpoints:
-        - path: /v1/categories**
+        - path: /v1/saveCategory
           authenticated: true
+          roles: admin
+        - path: /v1/updateCategory
+          authenticated: true
+          roles: admin
+        - path: /v1/retrieveCategory*
+          authenticated: true
+          roles: user,admin
+        - path: /v1/retrieveCategories
+          authenticated: true
+          roles: user,admin
+        - path: /v1/deleteCategory
+          authenticated: true
+          roles: admin
