@@ -2,12 +2,12 @@ package it.magiavventure.category.service;
 
 import it.magiavventure.category.error.CategoryException;
 import it.magiavventure.category.mapper.CategoryMapper;
-import it.magiavventure.category.model.Category;
 import it.magiavventure.category.model.CreateCategory;
 import it.magiavventure.category.model.UpdateCategory;
 import it.magiavventure.category.repository.CategoryRepository;
 import it.magiavventure.common.error.MagiavventureException;
 import it.magiavventure.mongo.entity.ECategory;
+import it.magiavventure.mongo.model.Category;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Example;

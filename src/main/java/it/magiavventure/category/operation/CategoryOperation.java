@@ -1,9 +1,9 @@
 package it.magiavventure.category.operation;
 
-import it.magiavventure.category.model.Category;
 import it.magiavventure.category.model.CreateCategory;
 import it.magiavventure.category.model.UpdateCategory;
 import it.magiavventure.category.service.CategoryService;
+import it.magiavventure.mongo.model.Category;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
