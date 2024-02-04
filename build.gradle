@@ -65,7 +65,7 @@ repositories {
 }
 
 ext {
-	starterVersion = '1.1.1'
+	starterVersion = '1.2.1'
 	mapstructVersion = '1.5.5.Final'
 }
 

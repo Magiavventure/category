@@ -4,12 +4,15 @@ import it.magiavventure.category.error.CategoryException;
 import it.magiavventure.category.mapper.CategoryMapper;
 import it.magiavventure.category.model.CreateCategory;
 import it.magiavventure.category.model.UpdateCategory;
-import it.magiavventure.category.repository.CategoryRepository;
 import it.magiavventure.common.error.MagiavventureException;
 import it.magiavventure.mongo.entity.ECategory;
 import it.magiavventure.mongo.model.Category;
+import it.magiavventure.mongo.repository.CategoryRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.Caching;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.Sort;
@@ -27,6 +30,7 @@ public class CategoryService {
     private final CategoryRepository categoryRepository;
     private final CategoryMapper categoryMapper;
 
+    @CacheEvict(value = {"categories"}, key = "'all'")
     public Category createCategory(CreateCategory createCategory) {
         this.checkIfCategoryExists(createCategory.getName());
 
@@ -41,6 +45,12 @@ public class CategoryService {
         return categoryMapper.map(savedCategory);
     }
 
+    @Caching(
+            evict = {
+                    @CacheEvict(value = {"category"}, key = "#p0.id"),
+                    @CacheEvict(value = {"categories"}, key = "'all'")
+            }
+    )
     public Category updateCategory(UpdateCategory updateCategory) {
         ECategory categoryToUpdate = findEntityById(updateCategory.getId());
 
@@ -58,10 +68,17 @@ public class CategoryService {
         return categoryMapper.map(updatedCategory);
     }
 
+    @Cacheable(value = "category", key = "#p0")
     public Category findById(UUID id) {
         return categoryMapper.map(findEntityById(id));
     }
 
+    @Caching(
+            evict = {
+                    @CacheEvict(value = {"category"}, key = "#p0"),
+                    @CacheEvict(value = {"categories"}, key = "'all'")
+            }
+    )
     public void deleteById(UUID id) {
         findEntityById(id);
         categoryRepository.deleteById(id);
@@ -72,6 +89,7 @@ public class CategoryService {
                 .orElseThrow(() -> MagiavventureException.of(CategoryException.CATEGORY_NOT_FOUND, id.toString()));
     }
 
+    @Cacheable(value = "categories", key = "'all'")
     public List<Category> findAll() {
         var sort = Sort.by(Sort.Direction.ASC, "name");
         return categoryRepository.findAll(sort)
