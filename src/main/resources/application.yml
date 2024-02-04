@@ -21,12 +21,12 @@ magiavventure:
         - path: /v1/updateCategory
           authenticated: true
           roles: admin
-        - path: /v1/retrieveCategory**
+        - path: /v1/deleteCategory/**
+          authenticated: true
+          roles: admin
+        - path: /v1/retrieveCategory/**
           authenticated: true
           roles: user,admin
         - path: /v1/retrieveCategories
           authenticated: true
           roles: user,admin
-        - path: /v1/deleteCategory
-          authenticated: true
-          roles: admin
