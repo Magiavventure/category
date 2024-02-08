@@ -13,6 +13,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cache.annotation.Caching;
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.Sort;
@@ -25,8 +27,10 @@ import java.util.UUID;
 @Slf4j
 @Service
 @AllArgsConstructor
+@Scope(proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class CategoryService {
 
+    private final CategoryService self;
     private final CategoryRepository categoryRepository;
     private final CategoryMapper categoryMapper;
 
@@ -52,7 +56,7 @@ public class CategoryService {
             }
     )
     public Category updateCategory(UpdateCategory updateCategory) {
-        ECategory categoryToUpdate = findEntityById(updateCategory.getId());
+        ECategory categoryToUpdate = self.findEntityById(updateCategory.getId());
 
         if(!updateCategory.getName().equals(categoryToUpdate.getName()))
             this.checkIfCategoryExists(updateCategory.getName());
@@ -68,9 +72,9 @@ public class CategoryService {
         return categoryMapper.map(updatedCategory);
     }
 
-    @Cacheable(value = "category", key = "#p0")
+
     public Category findById(UUID id) {
-        return categoryMapper.map(findEntityById(id));
+        return categoryMapper.map(self.findEntityById(id));
     }
 
     @Caching(
@@ -80,11 +84,12 @@ public class CategoryService {
             }
     )
     public void deleteById(UUID id) {
-        findEntityById(id);
+        self.findEntityById(id);
         categoryRepository.deleteById(id);
     }
 
-    private ECategory findEntityById(UUID id) {
+    @Cacheable(value = "category", key = "#p0")
+    public ECategory findEntityById(UUID id) {
         return categoryRepository.findById(id)
                 .orElseThrow(() -> MagiavventureException.of(CategoryException.CATEGORY_NOT_FOUND, id.toString()));
     }

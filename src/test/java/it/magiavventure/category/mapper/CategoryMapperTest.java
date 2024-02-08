@@ -17,8 +17,8 @@ class CategoryMapperTest {
 
     @Test
     @DisplayName("Map category entity in category dto")
-    void mapUserEntity() {
-        var categoryEntity = ECategory
+    void mapCategoryEntity() {
+        ECategory categoryEntity = ECategory
                 .builder()
                 .id(UUID.randomUUID())
                 .name("test")
@@ -36,7 +36,7 @@ class CategoryMapperTest {
 
     @Test
     @DisplayName("Map category entity null in category dto")
-    void mapUserEntityNull() {
+    void mapCategoryEntityNull() {
         Category category = categoryMapper.map(null);
 
         Assertions.assertNull(category);
