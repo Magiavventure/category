@@ -8,5 +8,5 @@ import org.mapstruct.ReportingPolicy;
 
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING, unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface CategoryMapper {
-    Category map(ECategory eUser);
+    Category map(ECategory eCategory);
 }
