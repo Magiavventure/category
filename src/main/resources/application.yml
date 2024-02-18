@@ -28,5 +28,7 @@ magiavventure:
           authenticated: true
           roles: user,admin
         - path: /v1/retrieveCategories
-          authenticated: true
-          roles: user,admin
+          authenticated: false
+      excludedEndpoints:
+        - path: /v1/retrieveCategories
+          method: GET
